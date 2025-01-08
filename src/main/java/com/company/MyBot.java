@@ -74,10 +74,10 @@ public class MyBot extends TelegramLongPollingBot {
             HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
             connection.setRequestMethod("GET");
 
-            // Проверяем статус ответа
+            
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                // Читаем ответ
+                
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder response = new StringBuilder();
                 String inputLine;
@@ -87,7 +87,7 @@ public class MyBot extends TelegramLongPollingBot {
                 }
                 in.close();
 
-                // Парсим JSON-ответ
+                
                 JSONObject jsonResponse = new JSONObject(response.toString());
                 JSONObject main = jsonResponse.getJSONObject("main");
                 JSONObject weather = jsonResponse.getJSONArray("weather").getJSONObject(0);
@@ -99,10 +99,10 @@ public class MyBot extends TelegramLongPollingBot {
                 return String.format("Ob havo shaxarda %s:\nTempratura: %.1f°C\nNamlik: %d%%\nIzoh: %s",
                         city, temperature, humidity, weatherDescription);
             } else {
-                return "Shaxar topilmadi. Yana bir marta urinib ko'ring.";
+                return "Shaxar topilmadi Yana bir marta urinib ko'ring.";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "Xato yuz berdi. Keyinroq urinib ko'ring.";
+            return "Xato yuz berdi Keyinroq urinib ko'ring.";
         }
     }}
